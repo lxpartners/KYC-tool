@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
@@ -8,50 +8,53 @@
 *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI',system-ui,sans-serif}
 body{background:#f0f2f5;color:#1e293b;min-height:100vh;padding:32px 16px}
 .wrap{max-width:680px;margin:0 auto}
-.header{background:#0f172a;border-radius:12px;padding:20px 28px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between}
-.header-left{}
+.header{background:#0f172a;border-radius:12px;padding:20px 28px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between}
 .header-tag{font-size:10px;color:#64748b;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px}
 .header-title{font-size:18px;font-weight:600;color:#f8fafc}
 .step-counter{font-size:12px;color:#475569;background:#1e293b;padding:6px 12px;border-radius:20px}
+.preview{background:#0f172a;border-radius:10px;padding:14px 20px;display:none;align-items:center;justify-content:space-between;margin-bottom:16px;gap:16px}
+.preview-label{font-size:10px;color:#64748b;letter-spacing:1px;text-transform:uppercase;margin-bottom:2px}
+.preview-score{font-size:24px;font-weight:700;color:#f8fafc}
+.preview-bar{flex:1}
+.preview-track{height:5px;background:#1e293b;border-radius:3px;overflow:hidden;border:1px solid #334155}
+.preview-fill{height:100%;border-radius:3px;transition:width .4s ease,background .4s ease}
+.preview-level{font-size:11px;font-weight:600;padding:4px 12px;border-radius:20px;white-space:nowrap}
 .card{background:#fff;border-radius:12px;padding:28px;box-shadow:0 1px 3px rgba(0,0,0,.06);margin-bottom:16px}
-.pbar{height:2px;background:#e2e8f0;border-radius:2px;margin-bottom:28px}
+.pbar{height:2px;background:#e2e8f0;border-radius:2px;margin-bottom:24px}
 .pfill{height:2px;background:#2563eb;border-radius:2px;transition:width .4s ease}
 .ptitle{font-size:17px;font-weight:600;color:#0f172a;margin-bottom:4px}
-.psub{font-size:13px;color:#64748b;margin-bottom:24px;line-height:1.5}
-.flabel{font-size:12px;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px;margin-top:20px;padding-bottom:6px;border-bottom:1px solid #f1f5f9}
+.psub{font-size:13px;color:#64748b;margin-bottom:22px;line-height:1.5}
+.flabel{font-size:11px;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px;margin-top:20px;padding-bottom:6px;border-bottom:1px solid #f1f5f9}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:4px}
-.optcard{border:1.5px solid #e2e8f0;border-radius:10px;padding:14px 12px;cursor:pointer;background:#fff;text-align:center;transition:all .18s ease;position:relative;overflow:hidden}
+.optcard{border:1.5px solid #e2e8f0;border-radius:10px;padding:14px 10px;cursor:pointer;background:#fff;text-align:center;transition:all .18s ease;position:relative;overflow:hidden}
 .optcard:hover{border-color:#93c5fd;background:#f0f7ff;transform:translateY(-1px)}
 .optcard.sel{border-color:#2563eb;background:#eff6ff;box-shadow:0 0 0 3px rgba(37,99,235,.1)}
-.optcard.sel::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:#2563eb}
+.optcard.sel::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:#2563eb}
 .risk1.sel{border-color:#16a34a;background:#f0fdf4;box-shadow:0 0 0 3px rgba(22,163,74,.1)}
 .risk1.sel::after{background:#16a34a}
 .risk2.sel{border-color:#d97706;background:#fffbeb;box-shadow:0 0 0 3px rgba(217,119,6,.1)}
 .risk2.sel::after{background:#d97706}
 .risk3.sel{border-color:#dc2626;background:#fef2f2;box-shadow:0 0 0 3px rgba(220,38,38,.1)}
 .risk3.sel::after{background:#dc2626}
-.opt-badge{display:inline-block;width:22px;height:22px;border-radius:50%;font-size:11px;font-weight:700;line-height:22px;margin-bottom:8px;background:#f1f5f9;color:#64748b;transition:all .18s}
+.opt-badge{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;font-size:11px;font-weight:700;margin-bottom:8px;background:#f1f5f9;color:#64748b;transition:all .18s}
 .optcard.sel .opt-badge{background:#2563eb;color:#fff}
 .risk1.sel .opt-badge{background:#16a34a}
 .risk2.sel .opt-badge{background:#d97706}
 .risk3.sel .opt-badge{background:#dc2626}
 .opt-name{font-size:12px;font-weight:600;color:#1e293b;line-height:1.3}
 .opt-desc{font-size:11px;color:#94a3b8;margin-top:4px;line-height:1.3}
-/* Score preview */
-.score-preview{background:#0f172a;border-radius:10px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
-.sp-label{font-size:11px;color:#64748b;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
-.sp-score{font-size:26px;font-weight:700;color:#f8fafc;font-variant-numeric:tabular-nums}
-.sp-bar{flex:1;margin:0 20px}
-.sp-track{height:6px;background:#1e293b;border-radius:3px;overflow:hidden;border:1px solid #334155}
-.sp-fill{height:100%;border-radius:3px;transition:width .4s ease,background .4s ease}
-.sp-level{font-size:12px;font-weight:600;padding:4px 12px;border-radius:20px;white-space:nowrap}
-.btn-row{display:flex;gap:10px;margin-top:8px}
+.type-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:8px}
+.typebtn{border:1.5px solid #e2e8f0;border-radius:12px;padding:22px 16px;cursor:pointer;background:#fff;text-align:center;transition:all .18s}
+.typebtn:hover{border-color:#93c5fd;background:#f0f7ff;transform:translateY(-2px)}
+.typebtn-icon{font-size:28px;margin-bottom:10px}
+.typebtn-name{font-size:14px;font-weight:600;color:#0f172a;margin-bottom:4px}
+.typebtn-desc{font-size:12px;color:#64748b;line-height:1.4}
+.btn-row{display:flex;gap:10px;margin-top:24px}
 .btn{padding:12px 24px;border-radius:10px;font-size:14px;cursor:pointer;border:1.5px solid #e2e8f0;background:#fff;color:#475569;font-weight:500;transition:all .15s}
 .btn:hover{background:#f8fafc;border-color:#cbd5e1}
 .btnp{flex:1;background:#0f172a;color:#fff;border-color:#0f172a;font-weight:600}
 .btnp:hover{background:#1e293b}
 .btnp.off{background:#e2e8f0;color:#94a3b8;border-color:#e2e8f0;cursor:default}
-/* Debt */
 .shortcuts{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
 .sc{padding:7px 14px;font-size:12px;border:1.5px solid #e2e8f0;border-radius:8px;cursor:pointer;background:#fff;color:#475569;font-weight:500;transition:all .15s}
 .sc:hover{border-color:#93c5fd;background:#f0f7ff;color:#2563eb}
@@ -60,22 +63,22 @@ body{background:#f0f2f5;color:#1e293b;min-height:100vh;padding:32px 16px}
 .ewrap{position:relative;margin-bottom:14px}
 .esign{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:#94a3b8;font-size:15px;pointer-events:none;font-weight:500}
 .hint{font-size:11px;color:#94a3b8;line-height:1.8;margin-bottom:20px;background:#f8fafc;padding:10px 14px;border-radius:8px}
-/* Result */
-.result-hero{border-radius:12px;padding:32px 28px;text-align:center;margin-bottom:20px;position:relative;overflow:hidden}
-.result-label{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;opacity:.8}
-.result-level{font-size:52px;font-weight:700;letter-spacing:-2px;margin-bottom:6px;line-height:1}
+.result-hero{border-radius:12px;padding:32px 28px;text-align:center;margin-bottom:20px}
+.result-tag{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;opacity:.75}
+.result-type{font-size:12px;font-weight:500;margin-bottom:12px;opacity:.7}
+.result-level{font-size:50px;font-weight:700;letter-spacing:-2px;margin-bottom:6px;line-height:1}
 .result-score{font-size:15px;font-weight:500;opacity:.8}
 .barwrap{margin:20px 0 8px}
 .bartrack{display:flex;height:8px;border-radius:4px;overflow:hidden;margin-bottom:8px}
 .arrowrow{position:relative;height:18px}
-.arrowptr{position:absolute;width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-bottom:14px solid rgba(0,0,0,.5);transition:left .6s ease}
-.barlabels{display:flex;justify-content:space-between;font-size:11px;opacity:.6;margin-top:2px}
+.arrowptr{position:absolute;width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-bottom:14px solid rgba(0,0,0,.4);transition:left .6s ease}
+.barlabels{display:flex;justify-content:space-between;font-size:11px;opacity:.55;margin-top:2px}
 .rcards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
 .rcard{background:#fff;border-radius:10px;padding:14px 18px;border:1px solid #e2e8f0}
 .rcard-label{font-size:10px;color:#94a3b8;text-transform:uppercase;letter-spacing:.8px;margin-bottom:4px}
 .rcard-val{font-size:14px;font-weight:600;color:#1e293b}
 .mbox{border:1px solid #e2e8f0;border-radius:12px;padding:18px 20px;margin-bottom:12px}
-.mtitle{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:#64748b;margin-bottom:12px}
+.mtitle{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:#64748b;margin-bottom:12px}
 .mrow{display:flex;gap:10px;margin-bottom:8px;align-items:flex-start}
 .mbullet{width:6px;height:6px;border-radius:50%;margin-top:5px;flex-shrink:0}
 .mtext{font-size:13px;color:#475569;line-height:1.5}
@@ -83,7 +86,7 @@ body{background:#f0f2f5;color:#1e293b;min-height:100vh;padding:32px 16px}
 .bkbtn:hover{background:#f8fafc}
 .bkwrap{background:#f8fafc;border-radius:10px;padding:16px;margin-bottom:12px}
 .bkrow{display:flex;align-items:center;gap:10px;margin-bottom:8px}
-.bklabel{width:130px;font-size:12px;color:#64748b;flex-shrink:0}
+.bklabel{width:150px;font-size:12px;color:#64748b;flex-shrink:0}
 .bktrack{flex:1;background:#e2e8f0;border-radius:4px;height:6px;overflow:hidden}
 .bkfill{height:100%;border-radius:4px;transition:width .6s ease}
 .bkval{width:36px;font-size:12px;font-weight:600;text-align:right;color:#1e293b}
@@ -94,21 +97,21 @@ body{background:#f0f2f5;color:#1e293b;min-height:100vh;padding:32px 16px}
 <body>
 <div class="wrap">
   <div class="header">
-    <div class="header-left">
+    <div>
       <div class="header-tag">Algebra Capital</div>
       <div class="header-title">KYC Risk Assessment</div>
     </div>
-    <div class="step-counter" id="stepcounter">Step 1 of 4</div>
+    <div class="step-counter" id="stepcounter">Inicio</div>
   </div>
-  <div id="score-preview" style="display:none" class="score-preview">
+  <div class="preview" id="preview">
     <div>
-      <div class="sp-label">Live score</div>
-      <div class="sp-score" id="sp-score">—</div>
+      <div class="preview-label">Score projectado</div>
+      <div class="preview-score" id="prev-score">—</div>
     </div>
-    <div class="sp-bar">
-      <div class="sp-track"><div class="sp-fill" id="sp-fill" style="width:0%;background:#16a34a"></div></div>
+    <div class="preview-bar">
+      <div class="preview-track"><div class="preview-fill" id="prev-fill" style="width:0%"></div></div>
     </div>
-    <div class="sp-level" id="sp-level" style="background:#1e293b;color:#64748b">Pending</div>
+    <div class="preview-level" id="prev-level" style="background:#1e293b;color:#64748b">Pendente</div>
   </div>
   <div class="card">
     <div class="pbar"><div class="pfill" id="pfill" style="width:0%"></div></div>
@@ -116,57 +119,112 @@ body{background:#f0f2f5;color:#1e293b;min-height:100vh;padding:32px 16px}
   </div>
 </div>
 <script>
-var W={customer_type:.18,pep_status:.25,product_risk:.05,transaction_behavior:.18,UBO_status:.10,geography_risk:.05,services:.09,debt_risk:.10};
-var WLAB={customer_type:"Customer type",pep_status:"PEP status",product_risk:"Product risk",transaction_behavior:"Transaction behavior",UBO_status:"UBO status",geography_risk:"Geography",services:"Services",debt_risk:"Debt exposure"};
-var PAGES=[
-  {title:"Client profile",sub:"Start by characterising the client structure and political exposure.",fields:[
-    {key:"customer_type",label:"Client type",opts:[
-      {v:1,name:"Individual",desc:"Natural person"},
-      {v:2,name:"Company with UBOs",desc:"Identified beneficial owners"},
-      {v:3,name:"Complex structure",desc:"Trusts or opaque layers"}
+var WEIGHTS_PC={
+  pep:.18, transacao:.18, tipo_cliente:.18,
+  geografia:.15, estrutura_societaria:.15,
+  modalidade_negocio:.07, ubo:.09
+};
+var WEIGHTS_PS={
+  pep:.19, transacao:.15, tipo_cliente:.15,
+  geografia:.15, verificacao_identidade:.09,
+  modalidade_negocio:.08, origem_fundos:.19
+};
+var LABELS_PC={pep:"PEP",transacao:"Padrao transaccional",tipo_cliente:"Tipo de cliente",geografia:"Geografia",estrutura_societaria:"Estrutura societaria",modalidade_negocio:"Modalidade de negocio",ubo:"UBO"};
+var LABELS_PS={pep:"PEP",transacao:"Padrao transaccional",tipo_cliente:"Tipo de cliente",geografia:"Geografia",verificacao_identidade:"Verificacao de identidade",modalidade_negocio:"Modalidade de negocio",origem_fundos:"Origem dos fundos"};
+
+var PAGES_PC=[
+  {title:"Perfil do cliente",sub:"Caracterize a estrutura e exposicao politica do cliente.",fields:[
+    {key:"pep",label:"Exposicao PEP",opts:[
+      {v:1,name:"Sem PEP",desc:"Sem exposicao politica"},
+      {v:2,name:"PEP Domestico",desc:"Cargo publico em Portugal"},
+      {v:3,name:"PEP Estrangeiro",desc:"Cargo estrangeiro ou associado"}
     ]},
-    {key:"pep_status",label:"PEP exposure",opts:[
-      {v:1,name:"No PEP",desc:"No political exposure"},
-      {v:2,name:"Domestic PEP",desc:"Public office in Portugal"},
-      {v:3,name:"Foreign PEP",desc:"Foreign official or associate"}
+    {key:"tipo_cliente",label:"Tipo de cliente",opts:[
+      {v:1,name:"Empresa simples",desc:"Estrutura direta, sem complexidade"},
+      {v:2,name:"Grupo empresarial",desc:"Holdings ou subsidiarias"},
+      {v:3,name:"Estrutura complexa",desc:"Multi-jurisdicao ou opaca"}
     ]},
-    {key:"geography_risk",label:"Geographic exposure",opts:[
-      {v:1,name:"Portugal",desc:"Low jurisdictional risk"},
-      {v:2,name:"EU or Low-risk",desc:"FATF low-risk country"},
-      {v:3,name:"High-risk",desc:"FATF grey or black list"}
+    {key:"geografia",label:"Geografia",opts:[
+      {v:1,name:"Portugal",desc:"Baixo risco jurisdicional"},
+      {v:2,name:"UE ou baixo risco",desc:"Pais FATF baixo risco"},
+      {v:3,name:"Alto risco",desc:"Lista cinzenta ou negra FATF"}
     ]}
   ]},
-  {title:"Products and services",sub:"Assess the risk profile of the products and services requested.",fields:[
-    {key:"product_risk",label:"Product risk",opts:[
-      {v:1,name:"Basic",desc:"Deposits, plain vanilla"},
-      {v:2,name:"Moderate",desc:"Structured notes"},
-      {v:3,name:"High risk",desc:"Derivatives, leveraged"}
+  {title:"Estrutura e transaccoes",sub:"Avalie a transparencia societaria e o comportamento transaccional.",fields:[
+    {key:"estrutura_societaria",label:"Estrutura societaria",opts:[
+      {v:1,name:"Simples e clara",desc:"Accionistas directos identificados"},
+      {v:2,name:"Holdings intermedio",desc:"Um nivel de holding identificado"},
+      {v:3,name:"Opaca ou offshore",desc:"Multiplos niveis ou jurisdicoes offshore"}
     ]},
-    {key:"services",label:"Services requested",opts:[
-      {v:1,name:"Low risk",desc:"Advisory, custody"},
-      {v:2,name:"Medium risk",desc:"Portfolio mgmt, FX"},
-      {v:3,name:"High risk",desc:"Private banking, transfers"}
+    {key:"transacao",label:"Padrao transaccional",opts:[
+      {v:1,name:"Previsivel",desc:"Volume regular e baixo"},
+      {v:2,name:"Moderado",desc:"Alguma variacao de volume"},
+      {v:3,name:"Irregular",desc:"Movimentos elevados ou inexplicados"}
     ]}
   ]},
-  {title:"Ownership and behavior",sub:"Evaluate transparency of ownership and transaction patterns.",fields:[
-    {key:"UBO_status",label:"Beneficial ownership",opts:[
-      {v:1,name:"Identified - EU",desc:"EU-resident UBOs"},
-      {v:2,name:"Identified - abroad",desc:"Non-EU resident UBOs"},
-      {v:3,name:"Unidentified",desc:"UBOs unclear or non-EU"}
+  {title:"Negocio e beneficiarios",sub:"Avalie a modalidade de negocio e a identificacao dos UBOs.",fields:[
+    {key:"modalidade_negocio",label:"Modalidade de negocio",opts:[
+      {v:1,name:"Atividade regulada",desc:"Setor supervisionado ou low-risk"},
+      {v:2,name:"Atividade mista",desc:"Combinacao de setores"},
+      {v:3,name:"Alto risco",desc:"Cash-intensive ou setor de risco"}
     ]},
-    {key:"transaction_behavior",label:"Transaction behavior",opts:[
-      {v:1,name:"Low or Routine",desc:"Predictable, low-volume"},
-      {v:2,name:"Medium",desc:"Some variation"},
-      {v:3,name:"High or Unusual",desc:"Large or unexplained"}
+    {key:"ubo",label:"Beneficiario efetivo (UBO)",opts:[
+      {v:1,name:"Identificado UE",desc:"Todos os UBOs identificados e residentes UE"},
+      {v:2,name:"Identificado fora UE",desc:"UBOs conhecidos, residentes fora da UE"},
+      {v:3,name:"Nao identificado",desc:"UBOs desconhecidos ou em jurisdicoes de risco"}
     ]}
-  ]},
-  {title:"Debt exposure",sub:"Enter the total credit or debt exposure with this client.",isDebt:true}
+  ]}
 ];
+
+var PAGES_PS=[
+  {title:"Perfil do cliente",sub:"Caracterize o cliente e a sua exposicao politica.",fields:[
+    {key:"pep",label:"Exposicao PEP",opts:[
+      {v:1,name:"Sem PEP",desc:"Sem exposicao politica"},
+      {v:2,name:"PEP Domestico",desc:"Cargo publico em Portugal"},
+      {v:3,name:"PEP Estrangeiro",desc:"Cargo estrangeiro ou associado"}
+    ]},
+    {key:"tipo_cliente",label:"Tipo de cliente e actividade",opts:[
+      {v:1,name:"Empregado por conta de outrem",desc:"Rendimento assalariado regular"},
+      {v:2,name:"Trabalhador independente",desc:"Profissional liberal ou ENI"},
+      {v:3,name:"Actividade de alto risco",desc:"Negocio cash-intensive ou nao regulado"}
+    ]},
+    {key:"geografia",label:"Geografia",opts:[
+      {v:1,name:"Portugal",desc:"Baixo risco jurisdicional"},
+      {v:2,name:"UE ou baixo risco",desc:"Pais FATF baixo risco"},
+      {v:3,name:"Alto risco",desc:"Lista cinzenta ou negra FATF"}
+    ]}
+  ]},
+  {title:"Transaccoes e identidade",sub:"Avalie o comportamento transaccional e a verificacao de identidade.",fields:[
+    {key:"transacao",label:"Padrao transaccional",opts:[
+      {v:1,name:"Previsivel",desc:"Volume regular e baixo"},
+      {v:2,name:"Moderado",desc:"Alguma variacao de volume"},
+      {v:3,name:"Irregular",desc:"Movimentos elevados ou inexplicados"}
+    ]},
+    {key:"verificacao_identidade",label:"Verificacao de identidade",opts:[
+      {v:1,name:"Completa e valida",desc:"Documento valido, NIF e morada confirmados"},
+      {v:2,name:"Parcialmente verificada",desc:"Alguns elementos por confirmar"},
+      {v:3,name:"Incompleta ou suspeita",desc:"Documentos expirados, inconsistentes ou recusados"}
+    ]}
+  ]},
+  {title:"Negocio e origem dos fundos",sub:"Avalie a modalidade de negocio e a origem dos fundos do cliente.",fields:[
+    {key:"modalidade_negocio",label:"Modalidade de negocio",opts:[
+      {v:1,name:"Atividade regulada",desc:"Setor supervisionado ou low-risk"},
+      {v:2,name:"Atividade mista",desc:"Combinacao de setores"},
+      {v:3,name:"Alto risco",desc:"Cash-intensive ou setor de risco"}
+    ]},
+    {key:"origem_fundos",label:"Origem dos fundos",opts:[
+      {v:1,name:"Clara e documentada",desc:"Salario, heranca ou venda documentada"},
+      {v:2,name:"Plausivel mas limitada",desc:"Explicacao razoavel sem documentacao completa"},
+      {v:3,name:"Desconhecida ou suspeita",desc:"Origem nao explicada ou inconsistente"}
+    ]}
+  ]}
+];
+
 var MEASURES={
-  LOW:["Simple due diligence measures apply.","Review documents every 3 years or upon expiry."],
-  MEDIUM:["Simple due diligence measures apply.","Review documents every 3 years or upon expiry."],
-  HIGH:["Reinforced due diligence measures apply.","Review documents every year or upon expiry."],
-  OL:["No measures apply - client must be offboarded immediately."]
+  LOW:["Medidas simplificadas de due diligence.","Revisao de documentos a cada 3 anos ou em caso de expiracao."],
+  MEDIUM:["Medidas simplificadas de due diligence.","Revisao de documentos a cada 3 anos ou em caso de expiracao."],
+  HIGH:["Medidas reforcadas de due diligence.","Revisao de documentos anual ou em caso de expiracao."],
+  OL:["Nao aplicar medidas - cliente deve ser objeto de offboarding imediato."]
 };
 var RC={
   LOW:{c:"#14532d",bg:"#f0fdf4",bd:"#16a34a",bullet:"#16a34a",spbg:"#dcfce7",sptxt:"#14532d"},
@@ -175,83 +233,137 @@ var RC={
   OL:{c:"#2e1065",bg:"#faf5ff",bd:"#7c3aed",bullet:"#7c3aed",spbg:"#ede9fe",sptxt:"#2e1065"}
 };
 
-var state={page:0,ans:{},debt:"",result:null,showBk:false};
+var state={clientType:null,page:-1,ans:{},result:null,showBk:false};
 
-function debtBand(v){return v<=15000?1:v<=500000?2:3;}
-function bkColor(v){return v===3?"#dc2626":v===2?"#d97706":"#16a34a";}
-
-function liveScore(){
-  var vals={};
-  for(var k in state.ans) vals[k]=state.ans[k];
-  var answeredCount=Object.keys(vals).length;
-  if(answeredCount===0) return null;
-  if(state.debt!==""){var dv=parseFloat(state.debt);if(!isNaN(dv)&&dv>=0) vals.debt_risk=debtBand(dv);}
-  var score=0,wsum=0;
-  for(var k in W){if(vals[k]!==undefined){score+=(Number(vals[k]))*W[k];wsum+=W[k];}}
-  if(wsum===0) return null;
-  var projected=score/wsum;
-  return Math.round(projected*100)/100;
-}
+function getPages(){return state.clientType==="PC"?PAGES_PC:PAGES_PS;}
+function getWeights(){return state.clientType==="PC"?WEIGHTS_PC:WEIGHTS_PS;}
+function getLabels(){return state.clientType==="PC"?LABELS_PC:LABELS_PS;}
+function totalPages(){return getPages().length;}
 
 function getLevelFromScore(s){return s<1.5?"LOW":s<2.3?"MEDIUM":s<2.9?"HIGH":"OL";}
 function getDisplayLevel(l){return l==="OL"?"OFF LIMITS":l;}
+function bkColor(v){return v===3?"#dc2626":v===2?"#d97706":"#16a34a";}
 
-function updatePreview(){
-  var preview=document.getElementById("score-preview");
-  var spScore=document.getElementById("sp-score");
-  var spFill=document.getElementById("sp-fill");
-  var spLevel=document.getElementById("sp-level");
-  if(!preview) return;
-  var s=liveScore();
-  if(s===null){preview.style.display="none";return;}
-  preview.style.display="flex";
-  var level=getLevelFromScore(s);
-  var cfg=RC[level];
-  var pct=Math.min(Math.max(((s-1)/2)*100,0),100);
-  spScore.textContent=s.toFixed(2);
-  spFill.style.width=pct+"%";
-  spFill.style.background=cfg.bd;
-  spLevel.textContent=getDisplayLevel(level);
-  spLevel.style.background=cfg.spbg;
-  spLevel.style.color=cfg.sptxt;
+function liveScore(){
+  var W=getWeights();
+  var answered=Object.keys(state.ans).length;
+  if(answered===0) return null;
+  var score=0,wsum=0;
+  for(var k in W){if(state.ans[k]!==undefined){score+=Number(state.ans[k])*W[k];wsum+=W[k];}}
+  if(wsum===0) return null;
+  return Math.round((score/wsum)*100)/100;
 }
 
-function calcResult(ans){
-  var dr=debtBand(parseFloat(ans.debt_amount)||0);
-  var vals={};
-  for(var k in ans) vals[k]=ans[k];
-  vals.debt_risk=dr;
+function calcResult(){
+  var W=getWeights();
   var score=0;
-  for(var k in W) score+=(Number(vals[k])||0)*W[k];
+  for(var k in W) score+=(Number(state.ans[k])||0)*W[k];
   var level=getLevelFromScore(score);
-  return{score:Math.round(score*100)/100,level:level,debt_risk:dr};
+  return{score:Math.round(score*100)/100,level:level};
 }
 
 function pageOk(){
-  var p=PAGES[state.page];
-  if(p.isDebt){var v=parseFloat(state.debt);return state.debt!==""&&!isNaN(v)&&v>=0;}
-  for(var i=0;i<p.fields.length;i++){if(state.ans[p.fields[i].key]===undefined)return false;}
-  return true;
+  if(state.page<0) return false;
+  var p=getPages()[state.page];
+  return p.fields.every(function(f){return state.ans[f.key]!==undefined;});
+}
+
+function updatePreview(){
+  var el=document.getElementById("preview");
+  var sc=document.getElementById("prev-score");
+  var fi=document.getElementById("prev-fill");
+  var lv=document.getElementById("prev-level");
+  if(!el) return;
+  var s=liveScore();
+  if(s===null||state.page<0){el.style.display="none";return;}
+  el.style.display="flex";
+  var level=getLevelFromScore(s);
+  var cfg=RC[level];
+  var pct=Math.min(Math.max(((s-1)/2)*100,0),100);
+  sc.textContent=s.toFixed(2);
+  fi.style.width=pct+"%";
+  fi.style.background=cfg.bd;
+  lv.textContent=getDisplayLevel(level);
+  lv.style.background=cfg.spbg;
+  lv.style.color=cfg.sptxt;
 }
 
 function goNext(){
-  var p=PAGES[state.page];
-  if(p.isDebt) state.ans.debt_amount=parseFloat(state.debt);
-  if(state.page<PAGES.length-1){state.page++;draw();}
-  else{state.result=calcResult(state.ans);draw();}
+  if(state.page<totalPages()-1){state.page++;draw();}
+  else{state.result=calcResult();draw();}
 }
 
 function draw(){
   var root=document.getElementById("root");
   var pfill=document.getElementById("pfill");
-  var stepcounter=document.getElementById("stepcounter");
-  var pct=(state.page/PAGES.length)*100;
-  if(pfill) pfill.style.width=pct+"%";
-  if(stepcounter) stepcounter.textContent="Step "+(state.page+1)+" of "+PAGES.length;
-  root.innerHTML=state.result?buildResult():buildForm();
-  if(!state.result) updatePreview();
-  else{var prev=document.getElementById("score-preview");if(prev) prev.style.display="none";}
+  var counter=document.getElementById("stepcounter");
+  if(state.result){
+    if(pfill) pfill.style.width="100%";
+    if(counter) counter.textContent="Resultado";
+    root.innerHTML=buildResult();
+    var prev=document.getElementById("preview");
+    if(prev) prev.style.display="none";
+  } else if(state.page<0){
+    if(pfill) pfill.style.width="0%";
+    if(counter) counter.textContent="Inicio";
+    root.innerHTML=buildTypeSelect();
+    var prev=document.getElementById("preview");
+    if(prev) prev.style.display="none";
+  } else {
+    var pct=((state.page+1)/totalPages())*100;
+    if(pfill) pfill.style.width=pct+"%";
+    if(counter) counter.textContent="Passo "+(state.page+1)+" de "+totalPages();
+    root.innerHTML=buildForm();
+    updatePreview();
+  }
   bind();
+}
+
+function buildTypeSelect(){
+  return '<div class="ptitle">Tipo de cliente</div>'+
+    '<div class="psub">Selecione o tipo de cliente para iniciar a avaliacao de risco.</div>'+
+    '<div class="type-grid">'+
+      '<div class="typebtn" id="btn-ps">'+
+        '<div class="typebtn-icon">&#128100;</div>'+
+        '<div class="typebtn-name">Pessoa Singular</div>'+
+        '<div class="typebtn-desc">Cliente individual, trabalhador ou profissional liberal</div>'+
+      '</div>'+
+      '<div class="typebtn" id="btn-pc">'+
+        '<div class="typebtn-icon">&#127970;</div>'+
+        '<div class="typebtn-name">Pessoa Colectiva</div>'+
+        '<div class="typebtn-desc">Empresa, holding ou estrutura societaria</div>'+
+      '</div>'+
+    '</div>';
+}
+
+function buildForm(){
+  var pages=getPages();
+  var p=pages[state.page];
+  var body="";
+  for(var fi=0;fi<p.fields.length;fi++){
+    var f=p.fields[fi];
+    body+='<div class="flabel">'+f.label+'</div><div class="grid">';
+    for(var oi=0;oi<f.opts.length;oi++){
+      var o=f.opts[oi];
+      var rc=o.v===1?" risk1":o.v===2?" risk2":" risk3";
+      var sel=state.ans[f.key]===o.v?" sel":"";
+      body+='<div class="optcard'+rc+sel+'" data-key="'+f.key+'" data-val="'+o.v+'">'+
+        '<div class="opt-badge">'+o.v+'</div>'+
+        '<div class="opt-name">'+o.name+'</div>'+
+        '<div class="opt-desc">'+o.desc+'</div>'+
+      '</div>';
+    }
+    body+='</div>';
+  }
+  var ok=pageOk();
+  var isLast=state.page===totalPages()-1;
+  return '<div class="ptitle">'+p.title+'</div>'+
+    '<div class="psub">'+p.sub+'</div>'+
+    body+
+    '<div class="btn-row">'+
+      '<button class="btn" id="btnback">&#8592; Voltar</button>'+
+      '<button class="btn btnp'+(ok?'':' off')+'" id="btnnext">'+(isLast?'Calcular risco':'Continuar')+'</button>'+
+    '</div>';
 }
 
 function buildResult(){
@@ -260,29 +372,29 @@ function buildResult(){
   var pct=Math.min(Math.max(((r.score-1)/2)*100,0),98);
   var aleft=(pct-1.5)+"%";
   var displayLevel=getDisplayLevel(r.level);
+  var typeLabel=state.clientType==="PC"?"Pessoa Colectiva":"Pessoa Singular";
+  var W=getWeights();
+  var LB=getLabels();
   var mhtml="";
   var marr=MEASURES[r.level];
   for(var i=0;i<marr.length;i++){
     mhtml+='<div class="mrow"><div class="mbullet" style="background:'+cfg.bullet+'"></div><span class="mtext">'+marr[i]+'</span></div>';
   }
-  var dr=debtBand(parseFloat(state.ans.debt_amount)||0);
-  var vals={};
-  for(var k in state.ans) vals[k]=state.ans[k];
-  vals.debt_risk=dr;
   var items=[];var mx=0;
-  for(var k in W){var vv=Number(vals[k])||0;var c=vv*W[k];items.push({key:k,v:vv,c:c});if(c>mx)mx=c;}
+  for(var k in W){var vv=Number(state.ans[k])||0;var c=vv*W[k];items.push({key:k,v:vv,c:c});if(c>mx)mx=c;}
   var bkhtml="";
   if(state.showBk){
     for(var i=0;i<items.length;i++){
       var it=items[i];
       var w=mx>0?((it.c/mx)*100):0;
-      bkhtml+='<div class="bkrow"><div class="bklabel">'+WLAB[it.key]+'</div><div class="bktrack"><div class="bkfill" style="width:'+w+'%;background:'+bkColor(it.v)+'"></div></div><div class="bkval">'+it.c.toFixed(2)+'</div></div>';
+      bkhtml+='<div class="bkrow"><div class="bklabel">'+(LB[it.key]||it.key)+'</div><div class="bktrack"><div class="bkfill" style="width:'+w+'%;background:'+bkColor(it.v)+'"></div></div><div class="bkval">'+it.c.toFixed(2)+'</div></div>';
     }
   }
   return '<div class="result-hero" style="background:'+cfg.bg+';border:1.5px solid '+cfg.bd+'">'+
-    '<div class="result-label" style="color:'+cfg.c+'">Risk classification</div>'+
+    '<div class="result-tag" style="color:'+cfg.c+'">Classificacao de risco</div>'+
+    '<div class="result-type" style="color:'+cfg.c+'">'+typeLabel+'</div>'+
     '<div class="result-level" style="color:'+cfg.c+'">'+displayLevel+'</div>'+
-    '<div class="result-score" style="color:'+cfg.c+'">Final score: '+r.score.toFixed(2)+' / 3.00</div>'+
+    '<div class="result-score" style="color:'+cfg.c+'">Score final: '+r.score.toFixed(2)+' / 3.00</div>'+
     '<div class="barwrap">'+
       '<div class="bartrack">'+
         '<div style="width:25%;background:#16a34a"></div>'+
@@ -295,67 +407,32 @@ function buildResult(){
     '</div>'+
   '</div>'+
   '<div class="rcards">'+
-    '<div class="rcard"><div class="rcard-label">Debt band</div><div class="rcard-val">Level '+r.debt_risk+' of 3</div></div>'+
-    '<div class="rcard"><div class="rcard-label">Dominant factor</div><div class="rcard-val">PEP status (25%)</div></div>'+
+    '<div class="rcard"><div class="rcard-label">Tipo de cliente</div><div class="rcard-val">'+typeLabel+'</div></div>'+
+    '<div class="rcard"><div class="rcard-label">Fator dominante</div><div class="rcard-val">PEP ('+(state.clientType==="PC"?"18%":"19%")+')</div></div>'+
   '</div>'+
-  '<div class="mbox">'+
-    '<div class="mtitle">Recommended measures</div>'+mhtml+
-  '</div>'+
-  '<button class="bkbtn" id="btnbk">'+(state.showBk?"Hide":"Show")+' score breakdown</button>'+
+  '<div class="mbox"><div class="mtitle">Medidas recomendadas</div>'+mhtml+'</div>'+
+  '<button class="bkbtn" id="btnbk">'+(state.showBk?"Ocultar":"Ver")+' decomposicao do score</button>'+
   (state.showBk?'<div class="bkwrap">'+bkhtml+'</div>':'')+
-  '<button class="resetbtn" id="btnreset">&#8592; New assessment</button>';
-}
-
-function buildForm(){
-  var p=PAGES[state.page];
-  var body="";
-  if(p.isDebt){
-    body='<div class="ewrap"><span class="esign">&#8364;</span>'+
-      '<input class="dinput" type="number" id="dinput" min="0" placeholder="0.00" value="'+state.debt+'"/></div>'+
-      '<div class="shortcuts">'+
-        '<div class="sc" data-v="5000">&#8364; 5,000</div>'+
-        '<div class="sc" data-v="50000">&#8364; 50,000</div>'+
-        '<div class="sc" data-v="200000">&#8364; 200,000</div>'+
-        '<div class="sc" data-v="750000">&#8364; 750,000</div>'+
-      '</div>'+
-      '<div class="hint">&#8804; &#8364;15,000 = Band 1 &nbsp;|&nbsp; &#8804; &#8364;500,000 = Band 2 &nbsp;|&nbsp; &gt; &#8364;500,000 = Band 3</div>';
-  } else {
-    for(var fi=0;fi<p.fields.length;fi++){
-      var f=p.fields[fi];
-      body+='<div class="flabel">'+f.label+'</div><div class="grid">';
-      for(var oi=0;oi<f.opts.length;oi++){
-        var o=f.opts[oi];
-        var riskClass=o.v===1?" risk1":o.v===2?" risk2":" risk3";
-        var sel=state.ans[f.key]===o.v?" sel":"";
-        body+='<div class="optcard'+riskClass+sel+'" data-key="'+f.key+'" data-val="'+o.v+'">'+
-          '<div class="opt-badge">'+o.v+'</div>'+
-          '<div class="opt-name">'+o.name+'</div>'+
-          '<div class="opt-desc">'+o.desc+'</div>'+
-        '</div>';
-      }
-      body+='</div>';
-    }
-  }
-  var ok=pageOk();
-  var isLast=state.page===PAGES.length-1;
-  return '<div class="ptitle">'+p.title+'</div>'+
-    '<div class="psub">'+p.sub+'</div>'+
-    body+
-    '<div class="btn-row">'+
-      (state.page>0?'<button class="btn" id="btnback">&#8592; Back</button>':'')+
-      '<button class="btn btnp'+(ok?'':' off')+'" id="btnnext">'+(isLast?'Calculate risk':'Continue')+'</button>'+
-    '</div>';
+  '<button class="resetbtn" id="btnreset">&#8592; Nova avaliacao</button>';
 }
 
 function bind(){
   var btnnext=document.getElementById("btnnext");
   if(btnnext) btnnext.onclick=function(){if(pageOk()) goNext();};
   var btnback=document.getElementById("btnback");
-  if(btnback) btnback.onclick=function(){state.page--;draw();};
+  if(btnback) btnback.onclick=function(){
+    if(state.page===0){state.page=-1;state.ans={};state.clientType=null;}
+    else state.page--;
+    draw();
+  };
   var btnbk=document.getElementById("btnbk");
   if(btnbk) btnbk.onclick=function(){state.showBk=!state.showBk;draw();};
   var btnreset=document.getElementById("btnreset");
-  if(btnreset) btnreset.onclick=function(){state={page:0,ans:{},debt:"",result:null,showBk:false};draw();};
+  if(btnreset) btnreset.onclick=function(){state={clientType:null,page:-1,ans:{},result:null,showBk:false};draw();};
+  var btnps=document.getElementById("btn-ps");
+  if(btnps) btnps.onclick=function(){state.clientType="PS";state.page=0;state.ans={};draw();};
+  var btnpc=document.getElementById("btn-pc");
+  if(btnpc) btnpc.onclick=function(){state.clientType="PC";state.page=0;state.ans={};draw();};
   var opts=document.querySelectorAll(".optcard");
   for(var i=0;i<opts.length;i++){
     (function(el){
@@ -364,23 +441,6 @@ function bind(){
         draw();
       };
     })(opts[i]);
-  }
-  var scs=document.querySelectorAll(".sc");
-  for(var i=0;i<scs.length;i++){
-    (function(el){
-      el.onclick=function(){state.debt=el.getAttribute("data-v");draw();};
-    })(scs[i]);
-  }
-  var dinput=document.getElementById("dinput");
-  if(dinput){
-    dinput.oninput=function(){
-      state.debt=this.value;
-      updatePreview();
-      var btn=document.getElementById("btnnext");
-      if(btn){if(pageOk())btn.classList.remove("off");else btn.classList.add("off");}
-    };
-    dinput.onkeydown=function(e){if(e.key==="Enter"&&pageOk()) goNext();};
-    dinput.focus();
   }
 }
 
